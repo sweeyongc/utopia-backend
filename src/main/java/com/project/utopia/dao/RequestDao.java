@@ -2,7 +2,7 @@ package com.project.utopia.dao;
 
 import com.project.utopia.entity.Customer;
 import com.project.utopia.holder.request.SetRequestStatusRequestBody;
-import com.project.utopia.holder.request.deleteRequestRequestBody;
+import com.project.utopia.holder.request.DeleteRequestRequestBody;
 import org.springframework.stereotype.Repository;
 import com.project.utopia.entity.Request;
 import org.hibernate.Session;
@@ -121,13 +121,13 @@ public class RequestDao {
      * Delete requests submitted by User/Admin in bulk
      * @return int : number of request deleted
      */
-    public int deleteRequest(List<deleteRequestRequestBody> deleteRequestList){
+    public int deleteRequest(List<DeleteRequestRequestBody> deleteRequestList){
         Session session = null;
         int deletedCount = 0;
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
-            for ( deleteRequestRequestBody item: deleteRequestList ){
+            for ( DeleteRequestRequestBody item: deleteRequestList ){
                 System.out.println("Going to delete request!!! RequestId: " + item.getRequestId());
                 Request requestItem = session.get(Request.class, Integer.valueOf(item.getRequestId()));
                 Customer customer = requestItem.getCustomer();

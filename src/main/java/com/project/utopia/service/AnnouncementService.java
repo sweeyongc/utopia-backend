@@ -4,6 +4,8 @@ package com.project.utopia.service;
 import com.project.utopia.dao.AnnouncementDao;
 import com.project.utopia.entity.Announcement;
 import com.project.utopia.holder.request.AnnouncementRequestBody;
+import com.project.utopia.holder.request.DeleteAnnouncementRequestBody;
+import com.project.utopia.holder.request.DeleteRequestRequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +37,10 @@ public class AnnouncementService {
 
     public List<Announcement> getAllAnnouncements() {
         List<Announcement> announcements = announcementDao.getAllAnnouncements();
-        // return the top 6 latest announcements
-        if (announcements.size() > 6) {
-            return announcements.subList(0, 6);
-        }
         return announcements;
+    }
+
+    public int deleteAnnouncements(List<DeleteAnnouncementRequestBody> deleteAnnouncementList) {
+        return announcementDao.deleteAnnouncement(deleteAnnouncementList);
     }
 }

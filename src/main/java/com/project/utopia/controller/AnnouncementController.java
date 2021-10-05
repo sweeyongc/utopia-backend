@@ -3,9 +3,11 @@ package com.project.utopia.controller;
 
 import com.project.utopia.entity.Announcement;
 import com.project.utopia.holder.request.AnnouncementRequestBody;
+import com.project.utopia.holder.request.DeleteAnnouncementRequestBody;
 import com.project.utopia.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -37,5 +39,13 @@ public class AnnouncementController {
     @ResponseBody
     public String getContent(@PathVariable("announcement-id") int announcementId) {
         return announcementService.getContent(announcementId);
+    }
+
+    @RequestMapping(value = "/announcements/deleteAnnouncement", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    @ResponseBody
+    public ResponseEntity<Object> deleteAnnouncements(@RequestBody List<DeleteAnnouncementRequestBody> deleteAnnouncementList) {
+        int count = announcementService.deleteAnnouncements(deleteAnnouncementList);
+        return new ResponseEntity<>(count, HttpStatus.OK);
     }
 }

@@ -54,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() // 指明权限，*是任意字符；**是可以匹配/a/b这种多个level的。
                 .antMatchers("/setRequestStatus/**").hasAnyAuthority( "ROLE_ADMIN")
                 .antMatchers("/allRequests/**").hasAnyAuthority( "ROLE_ADMIN")
-                // need to move "/new-announcement/**" on top of the root of “/announcements" in order to override auth.
                 .antMatchers("/announcements/new-announcement/**").hasAnyAuthority( "ROLE_ADMIN")
+                .antMatchers("/announcements/deleteAnnouncement/**").hasAnyAuthority( "ROLE_ADMIN")
                 .antMatchers("/announcements/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/profile/**").hasAnyAuthority("ROLE_USER")
                 .anyRequest().permitAll();
