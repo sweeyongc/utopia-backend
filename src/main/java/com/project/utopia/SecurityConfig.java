@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/allRequests/**").hasAnyAuthority( "ROLE_ADMIN")
                 .antMatchers("/announcements/new-announcement/**").hasAnyAuthority( "ROLE_ADMIN")
                 .antMatchers("/announcements/deleteAnnouncement/**").hasAnyAuthority( "ROLE_ADMIN")
+                .antMatchers("/updateAnnouncement/**").hasAnyAuthority( "ROLE_ADMIN")
                 .antMatchers("/announcements/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/profile/**").hasAnyAuthority("ROLE_USER")
                 .anyRequest().permitAll();

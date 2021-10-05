@@ -3,9 +3,8 @@ package com.project.utopia.service;
 
 import com.project.utopia.dao.AnnouncementDao;
 import com.project.utopia.entity.Announcement;
-import com.project.utopia.holder.request.AnnouncementRequestBody;
-import com.project.utopia.holder.request.DeleteAnnouncementRequestBody;
-import com.project.utopia.holder.request.DeleteRequestRequestBody;
+import com.project.utopia.holder.request.*;
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +41,9 @@ public class AnnouncementService {
 
     public int deleteAnnouncements(List<DeleteAnnouncementRequestBody> deleteAnnouncementList) {
         return announcementDao.deleteAnnouncement(deleteAnnouncementList);
+    }
+
+    public int updateAnnouncement(List<UpdateAnnouncementRequestBody> updateAnnouncementRequestBodyList) {
+        return announcementDao.updateAnnouncement(updateAnnouncementRequestBodyList);
     }
 }

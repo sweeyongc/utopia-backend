@@ -4,6 +4,8 @@ package com.project.utopia.controller;
 import com.project.utopia.entity.Announcement;
 import com.project.utopia.holder.request.AnnouncementRequestBody;
 import com.project.utopia.holder.request.DeleteAnnouncementRequestBody;
+import com.project.utopia.holder.request.SetRequestStatusRequestBody;
+import com.project.utopia.holder.request.UpdateAnnouncementRequestBody;
 import com.project.utopia.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +48,15 @@ public class AnnouncementController {
     @ResponseBody
     public ResponseEntity<Object> deleteAnnouncements(@RequestBody List<DeleteAnnouncementRequestBody> deleteAnnouncementList) {
         int count = announcementService.deleteAnnouncements(deleteAnnouncementList);
+        return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateAnnouncement", method = RequestMethod.PATCH)
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    @ResponseBody
+    public ResponseEntity<Object> updateAnnouncements(@RequestBody List<UpdateAnnouncementRequestBody> updateAnnouncementList) {
+        //return number of announcement update operation made
+        int count = announcementService.updateAnnouncement(updateAnnouncementList);
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 }
