@@ -2,7 +2,6 @@ package com.project.utopia.dao;
 
 import com.project.utopia.entity.Announcement;
 import com.project.utopia.holder.request.DeleteAnnouncementRequestBody;
-import com.project.utopia.holder.request.SetRequestStatusRequestBody;
 import com.project.utopia.holder.request.UpdateAnnouncementRequestBody;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,15 +36,6 @@ public class AnnouncementDao {
         }
     }
 
-    public Announcement getAnnouncementById(int announcementId) {
-        try (Session session = sessionFactory.openSession()) {
-            return session.get(Announcement.class, announcementId);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
     public List<Announcement> getAllAnnouncements() {
         List<Announcement> announcementList = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
@@ -60,15 +50,16 @@ public class AnnouncementDao {
 
     /**
      * Delete announcements submitted by Admin in bulk
+     *
      * @return int : number of announcements deleted
      */
-    public int deleteAnnouncement(List<DeleteAnnouncementRequestBody> deleteAnnouncementList){
+    public int deleteAnnouncement(List<DeleteAnnouncementRequestBody> deleteAnnouncementList) {
         Session session = null;
         int deletedCount = 0;
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
-            for ( DeleteAnnouncementRequestBody item: deleteAnnouncementList ){
+            for (DeleteAnnouncementRequestBody item : deleteAnnouncementList) {
                 System.out.println("Going to delete announcement!!! AnnouncementId: " + item.getAnnouncementId());
                 Announcement announcementItem = session.get(Announcement.class, Integer.valueOf(item.getAnnouncementId()));
 //                Customer customer = announcementItem.getCustomer();
@@ -78,7 +69,7 @@ public class AnnouncementDao {
                 deletedCount++;
             }
             session.getTransaction().commit();
-            System.out.println("Total deleted:"  + deletedCount);
+            System.out.println("Total deleted:" + deletedCount);
         } catch (Exception ex) {
             ex.printStackTrace();
             if (session != null) session.getTransaction().rollback();
@@ -93,6 +84,7 @@ public class AnnouncementDao {
 
     /**
      * Apply announcement updates submitted by Admin in bulk
+     *
      * @return int : number of announcement updates operations made
      */
     public int updateAnnouncement(List<UpdateAnnouncementRequestBody> updateAnnouncementRequestBodyList) {
@@ -101,7 +93,7 @@ public class AnnouncementDao {
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
-            for ( UpdateAnnouncementRequestBody item: updateAnnouncementRequestBodyList ){
+            for (UpdateAnnouncementRequestBody item : updateAnnouncementRequestBodyList) {
 //                System.out.println("Target announcementId: " + item.getAnnouncementId());
 
                 String qryString = "UPDATE Announcement announcement set announcement.title=:title, announcement.content=:content, announcement.category=:category where announcement.announcementId=:announcementId ";
@@ -113,8 +105,8 @@ public class AnnouncementDao {
                 count += query.executeUpdate();
             }
             session.getTransaction().commit();
-            System.out.println("Total updated:"  + count);
-        }catch (Exception ex) {
+            System.out.println("Total updated:" + count);
+        } catch (Exception ex) {
             ex.printStackTrace();
             if (session != null) session.getTransaction().rollback();
         } finally {

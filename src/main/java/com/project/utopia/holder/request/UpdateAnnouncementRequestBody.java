@@ -25,6 +25,7 @@ public class UpdateAnnouncementRequestBody {
     public int getAnnouncementId() {
         return announcementId;
     }
+
     public String getTitle() {
         return title;
     }

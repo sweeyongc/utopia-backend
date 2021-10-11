@@ -17,21 +17,13 @@ public class AnnouncementService {
     @Autowired
     private AnnouncementDao announcementDao;
 
-    public void saveAnnouncement(AnnouncementRequestBody requestBody){
+    public void saveAnnouncement(AnnouncementRequestBody requestBody) {
         Announcement announcementObject = new Announcement();
         announcementObject.setTitle(requestBody.getTitle());
         announcementObject.setCategory(requestBody.getCategory());
         announcementObject.setContent(requestBody.getContent());
         announcementObject.setCreationTime(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
         announcementDao.saveAnnouncement(announcementObject);
-    }
-
-    public String getContent(int announcementId) {
-        return getAnnouncementById(announcementId).getContent();
-    }
-
-    public Announcement getAnnouncementById(int announcementId) {
-        return announcementDao.getAnnouncementById(announcementId);
     }
 
     public List<Announcement> getAllAnnouncements() {

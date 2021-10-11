@@ -3,6 +3,7 @@ package com.project.utopia.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {
@@ -14,7 +15,7 @@ public class Customer implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = true)
-    private User user; // 相当于 FK email
+    private User user;
 
     private String firstName;
     private String lastName;
@@ -23,7 +24,6 @@ public class Customer implements Serializable {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Request> requests;
-
 
     public int getId() {
         return id;
@@ -76,6 +76,7 @@ public class Customer implements Serializable {
     public double getBalance() {
         return balance;
     }
+
     public void setBalance(double balance) {
         this.balance = balance;
     }

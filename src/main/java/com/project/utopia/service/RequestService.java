@@ -40,7 +40,7 @@ public class RequestService {
         requestDao.save(requestObject);
     }
 
-    public List<Request> getCurrentRequests(){
+    public List<Request> getCurrentRequests() {
         return requestDao.getCurrentUserRequests();
     }
 

@@ -14,7 +14,7 @@ public class Authorities implements Serializable {
     private String emailId;
 
     //convert enum from numbers to String type
-   // @Enumerated(EnumType.STRING)
+    // @Enumerated(EnumType.STRING)
     private String authorities;
 
     public String getEmailId() {
