@@ -50,16 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/new-announcement/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/deleteAnnouncement/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/updateAnnouncement/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/allRequests/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/setRequestStatus/**").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/announcement-management/**").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/request-management/**").hasAnyAuthority("ROLE_ADMIN")
                 .antMatchers("/profile/**").hasAnyAuthority("ROLE_USER")
-                .antMatchers("/deleteRequest/**").hasAnyAuthority("ROLE_USER")
-                .antMatchers("/newRequest/**").hasAnyAuthority("ROLE_USER")
-                .antMatchers("/currentRequests/**").hasAnyAuthority("ROLE_USER")
-//                .antMatchers("/announcements/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers("/delete-request/**").hasAnyAuthority("ROLE_USER")
+                .antMatchers("/new-request/**").hasAnyAuthority("ROLE_USER")
+                .antMatchers("/current-requests/**").hasAnyAuthority("ROLE_USER")
                 .anyRequest().permitAll();
 
         http

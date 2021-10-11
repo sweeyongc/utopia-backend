@@ -15,7 +15,7 @@ public class AccountInfoController {
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping(value = "/accountinfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/account-info", method = RequestMethod.GET)
     public ResponseEntity<Object> accountInfo() {
         System.out.println("Enter the accountInfo controller");
         Customer customer = customerService.getCurrentCustomer();
