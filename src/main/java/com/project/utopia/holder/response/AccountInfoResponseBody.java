@@ -38,6 +38,7 @@ public class AccountInfoResponseBody {
     public void setAddress(String shippingAddress) {
         this.address = address;
     }
+
     public double getBalance() {
         return balance;
     }

@@ -12,13 +12,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import com.project.utopia.holder.request.RegisterRequestBody;
+
 @Repository
 public class CustomerDao {
-    //这个session factory 是跟数据库交流的
     @Autowired
     private SessionFactory sessionFactory;
 
-    public int addCustomer(RegisterRequestBody request) { // set 是否成功，通过返回一个int来表达。
+    public int addCustomer(RegisterRequestBody request) {
         User user = new User();   // build a user from request
         user.setEnabled(true);
         user.setEmailId(request.getEmail());
@@ -50,7 +50,7 @@ public class CustomerDao {
                 session.close();
             }
         }
-        return 0; // on success
+        return 0;
     }
 
     public Customer getCurrentCustomer() {

@@ -1,6 +1,6 @@
 package com.project.utopia.holder.request;
 
-public class deleteRequestRequestBody {
+public class DeleteRequestRequestBody {
 
     private String requestId;
 

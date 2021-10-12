@@ -1,9 +1,9 @@
 package com.project.utopia.service;
 
-
 import com.project.utopia.dao.AnnouncementDao;
 import com.project.utopia.entity.Announcement;
-import com.project.utopia.holder.request.AnnouncementRequestBody;
+import com.project.utopia.holder.request.*;
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class AnnouncementService {
     @Autowired
     private AnnouncementDao announcementDao;
 
-    public void saveAnnouncement(AnnouncementRequestBody requestBody){
+    public void saveAnnouncement(AnnouncementRequestBody requestBody) {
         Announcement announcementObject = new Announcement();
         announcementObject.setTitle(requestBody.getTitle());
         announcementObject.setCategory(requestBody.getCategory());
@@ -25,20 +25,16 @@ public class AnnouncementService {
         announcementDao.saveAnnouncement(announcementObject);
     }
 
-    public String getContent(int announcementId) {
-        return getAnnouncementById(announcementId).getContent();
-    }
-
-    public Announcement getAnnouncementById(int announcementId) {
-        return announcementDao.getAnnouncementById(announcementId);
-    }
-
     public List<Announcement> getAllAnnouncements() {
         List<Announcement> announcements = announcementDao.getAllAnnouncements();
-        // return the top 6 latest announcements
-        if (announcements.size() > 6) {
-            return announcements.subList(0, 6);
-        }
         return announcements;
+    }
+
+    public int deleteAnnouncements(List<DeleteAnnouncementRequestBody> deleteAnnouncementList) {
+        return announcementDao.deleteAnnouncement(deleteAnnouncementList);
+    }
+
+    public int updateAnnouncement(List<UpdateAnnouncementRequestBody> updateAnnouncementRequestBodyList) {
+        return announcementDao.updateAnnouncement(updateAnnouncementRequestBodyList);
     }
 }

@@ -1,4 +1,5 @@
 package com.project.utopia.entity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 

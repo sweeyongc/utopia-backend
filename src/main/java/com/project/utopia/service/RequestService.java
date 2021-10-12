@@ -5,7 +5,7 @@ import com.project.utopia.entity.Customer;
 import com.project.utopia.entity.Request;
 import com.project.utopia.holder.request.NewRequestRequestBody;
 import com.project.utopia.holder.request.SetRequestStatusRequestBody;
-import com.project.utopia.holder.request.deleteRequestRequestBody;
+import com.project.utopia.holder.request.DeleteRequestRequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class RequestService {
         requestDao.save(requestObject);
     }
 
-    public List<Request> getCurrentRequests(){
+    public List<Request> getCurrentRequests() {
         return requestDao.getCurrentUserRequests();
     }
 
@@ -52,7 +52,7 @@ public class RequestService {
         return requestDao.setRequestsStatus(setStatusList);
     }
 
-    public int deleteRequest(List<deleteRequestRequestBody> deleteRequestList) {
+    public int deleteRequest(List<DeleteRequestRequestBody> deleteRequestList) {
         return requestDao.deleteRequest(deleteRequestList);
     }
 }
