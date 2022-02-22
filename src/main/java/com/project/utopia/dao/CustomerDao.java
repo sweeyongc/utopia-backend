@@ -19,18 +19,21 @@ public class CustomerDao {
     private SessionFactory sessionFactory;
 
     public int addCustomer(RegisterRequestBody request) {
-        User user = new User();   // build a user from request
+        // Create a new user based on new request
+        User user = new User();
         user.setEnabled(true);
         user.setEmailId(request.getEmail());
         user.setPassword(request.getPassword());
 
-        Customer customer = new Customer(); // build a customer from request
+        // Create a customer based on new request
+        Customer customer = new Customer();
         customer.setAddress(request.getAddress());
         customer.setFirstName(request.getFirstName());
         customer.setLastName(request.getLastName());
         customer.setUser(user);
 
-        Authorities authorities = new Authorities();  // build a authorities from request
+        // Assign default "ROLE_USER" to new user
+        Authorities authorities = new Authorities();
         authorities.setAuthorities("ROLE_USER");
         authorities.setEmailId(request.getEmail());
         Session session = null;
