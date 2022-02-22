@@ -62,9 +62,6 @@ public class AnnouncementDao {
             for (DeleteAnnouncementRequestBody item : deleteAnnouncementList) {
                 System.out.println("Going to delete announcement!!! AnnouncementId: " + item.getAnnouncementId());
                 Announcement announcementItem = session.get(Announcement.class, Integer.valueOf(item.getAnnouncementId()));
-//                Customer customer = announcementItem.getCustomer();
-//                //actually removing requestItem from "request" table
-//                customer.getRequests().remove(requestItem);
                 session.delete(announcementItem);
                 deletedCount++;
             }
@@ -94,8 +91,6 @@ public class AnnouncementDao {
             session = sessionFactory.openSession();
             session.beginTransaction();
             for (UpdateAnnouncementRequestBody item : updateAnnouncementRequestBodyList) {
-//                System.out.println("Target announcementId: " + item.getAnnouncementId());
-
                 String qryString = "UPDATE Announcement announcement set announcement.title=:title, announcement.content=:content, announcement.category=:category where announcement.announcementId=:announcementId ";
                 Query query = session.createQuery(qryString)
                         .setParameter("announcementId", item.getAnnouncementId())

@@ -68,7 +68,7 @@ public class RequestDao {
         List<Request> requestList = new ArrayList<>();
         try {
             session = sessionFactory.openSession();
-            //use query to fetch requests for different status and append to request list
+            //Fetch requests for different status and append to request list
             //Requests of same status are sorted by lastModifiedTime
             TypedQuery<Request> openQuery = session.createQuery("SELECT request FROM Request request WHERE request.status = 'OPEN' ORDER BY request.lastModifiedTime", Request.class);
             requestList.addAll(openQuery.getResultList());
@@ -136,7 +136,6 @@ public class RequestDao {
                 System.out.println("Going to delete request!!! RequestId: " + item.getRequestId());
                 Request requestItem = session.get(Request.class, Integer.valueOf(item.getRequestId()));
                 Customer customer = requestItem.getCustomer();
-                //actually removing requestItem from "request" table
                 customer.getRequests().remove(requestItem);
                 session.delete(requestItem);
                 deletedCount++;
